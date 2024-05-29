@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DVar.Calculator.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+        x:Class="DVar.Calculator.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DVar.Calculator">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*,3*">
+        <Grid.Styles>
+            <Style Selector="Button">
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontStyle" Value="Oblique" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+        </Grid.Styles>
+        <TextBox FontSize="35" Text="{Binding DisplayText}" IsReadOnly="True"/>
+
+        <Grid Grid.Row="1" RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*,*">
+            <Button Grid.Row="0" Grid.Column="0" Content="7"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="7" />
+            <Button Grid.Row="0" Grid.Column="1" Content="8"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="8" />
+            <Button Grid.Row="0" Grid.Column="2" Content="9"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="9" />
+            <Button Grid.Row="0" Grid.Column="3" Content="/"
+                    Command="{Binding PutSymbolWithSpacesCommand}" CommandParameter="/" />
+
+            <Button Grid.Row="1" Grid.Column="0" Content="4"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="4" />
+            <Button Grid.Row="1" Grid.Column="1" Content="5"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="5" />
+            <Button Grid.Row="1" Grid.Column="2" Content="6"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="6" />
+            <Button Grid.Row="1" Grid.Column="3" Content="*"
+                    Command="{Binding PutSymbolWithSpacesCommand}" CommandParameter="*" />
+
+            <Button Grid.Row="2" Grid.Column="0" Content="1"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="1" />
+            <Button Grid.Row="2" Grid.Column="1" Content="2"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="2" />
+            <Button Grid.Row="2" Grid.Column="2" Content="3"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="3" />
+            <Button Grid.Row="2" Grid.Column="3" Content="-"
+                    Command="{Binding PutSymbolWithSpacesCommand}" CommandParameter="-" />
+
+            <Button Grid.Row="3" Grid.Column="0" Content="C"
+                    Command="{Binding ClearCommand}" />
+            <Button Grid.Row="3" Grid.Column="1" Content="0"
+                    Command="{Binding PutSymbolCommand}" CommandParameter="0" />
+            <Button Grid.Row="3" Grid.Column="2" Content="=" 
+                    Command="{Binding CalculateCommand}" />
+            <Button Grid.Row="3" Grid.Column="3" Content="+"
+                    Command="{Binding PutSymbolWithSpacesCommand}" CommandParameter="+" />
+            <Button Grid.Row="0" Grid.Column="4" Grid.RowSpan="4"
+                    Command="{Binding EraseCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x2190;" FontSize="22" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
